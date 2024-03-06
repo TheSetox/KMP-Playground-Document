@@ -2,7 +2,7 @@
 <!DOCTYPE instance-profile
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
-<instance-profile id="hi" name="Help Instance"
+<instance-profile id="hi" name="Kotlin Multiplatform Playground Document"
                  start-page="Introduction.md">
 
     <toc-element topic="Introduction.md"/>
