@@ -1,0 +1,69 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2024-03-06T11:01:35.7453981"><title>ViewModel | Help Instance</title><script type="application/json" id="virtual-toc-data">[{"id":"current-code","level":0,"title":"Current code","anchor":"#current-code"},{"id":"viewmodel","level":1,"title":"ViewModel","anchor":"#viewmodel"},{"id":"getstate","level":2,"title":"getState","anchor":"#getstate"},{"id":"reducetostate","level":1,"title":"reduceToState","anchor":"#reducetostate"},{"id":"mainscreen","level":1,"title":"MainScreen","anchor":"#mainscreen"},{"id":"mainstate","level":1,"title":"MainState","anchor":"#mainstate"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.css" rel="stylesheet"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="site.webmanifest"><meta name="msapplication-TileColor" content="#000000"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="ViewModel | Help Instance"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Help Instance Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="viewmodel.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="ViewModel | Help Instance"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "viewmodel.html#webpage",
+    "url": "viewmodel.html",
+    "name": "ViewModel | Help Instance",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "/#website",
+    "url": "/",
+    "name": "Help Instance Help"
+}</script><!-- End Schema.org --></head><body data-id="ViewModel" data-main-title="ViewModel" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="Folder-Structure.md|Folder Structure///shared.md|shared///commonMain-as-shared.md|commonMain"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Help Instance  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="ViewModel" id="ViewModel.md">ViewModel</h1><p id="fd2be520_2477">the ViewModel acts as a mediator between the UI layer and the domain layer, which contains the business logic. It focuses solely on managing the presentation logic, handling user interactions, and updating the UI accordingly.</p><section class="chapter"><h2 id="current-code" data-toc="current-code">Current code</h2><aside class="prompt" data-type="note" data-title="" id="fd2be520_2478"><p id="fd2be520_2479">This is under evaluation and incomplete.</p></aside><p id="fd2be520_2480"><span class="emphasis" id="fd2be520_2481">ViewModel.kt</span></p><div class="code-block" data-lang="kotlin">
+class ViewModel(private val mainScreen: MainScreen = MainScreen()) {
+
+    fun getState(): MainState {
+        val result = mainScreen fetches platformName
+        return result.reduceToState()
+    }
+}
+
+fun String.reduceToState(): MainState {
+    val state = MainState()
+    if (isEmpty()) state.error = &quot;Error can't fetch data&quot;
+    if (isNotEmpty()) state.success = this
+    return state
+}
+
+class MainScreen(private val repository: Repository = DataRepository()) {
+    infix fun fetches(useCase: Repository.() -&gt; String): String {
+        return repository.useCase()
+    }
+}
+
+data class MainState(
+    var success: String = &quot;&quot;,
+    var error: String = &quot;&quot;
+)
+</div><section class="chapter"><div class="collapse"><div class="collapse__title" data-expanded="true"><h3 id="viewmodel" data-toc="viewmodel">ViewModel</h3></div><div class="collapse__content"><div class="code-block" data-lang="kotlin">
+class ViewModel(private val mainScreen: MainScreen = MainScreen()) {
+
+}
+</div><p id="fd2be520_2484">The <code class="code" id="fd2be520_2485">ViewModel</code> class encapsulates the logic for managing data and state transitions within the application.</p><p id="fd2be520_2486">It interacts with the <code class="code" id="fd2be520_2487">MainScreen</code> to fetch platform-specific data and then processes it to derive the application's current state.</p><section class="chapter"><div class="collapse"><div class="collapse__title" data-expanded="true"><h4 id="getstate" data-toc="getstate">getState</h4></div><div class="collapse__content"><div class="code-block" data-lang="kotlin">
+    fun getState(): MainState {
+        val result = mainScreen fetches platformName
+        return result.reduceToState()
+    }
+</div><p id="fd2be520_2489">The <code class="code" id="fd2be520_2490">getState</code> function within the <code class="code" id="fd2be520_2491">ViewModel</code> class retrieves the current state of the application.</p><p id="fd2be520_2492">It delegates the task of fetching platform-specific data to the <code class="code" id="fd2be520_2493">MainScreen</code>, then processes the result to derive the application state using the <code class="code" id="fd2be520_2494">reduceToState</code> extension function.</p></div></div></section></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title" data-expanded="true"><h3 id="reducetostate" data-toc="reducetostate">reduceToState</h3></div><div class="collapse__content"><div class="code-block" data-lang="kotlin">
+fun String.reduceToState(): MainState {
+    val state = MainState()
+    if (isEmpty()) state.error = &quot;Error can't fetch data&quot;
+    if (isNotEmpty()) state.success = this
+    return state
+}
+</div><p id="fd2be520_2496">The <code class="code" id="fd2be520_2497">reduceToState</code> extension function operates on a <code class="code" id="fd2be520_2498">String</code> object, transforming it into a <code class="code" id="fd2be520_2499">MainState</code> object based on certain conditions.</p><ul class="list _ul" id="fd2be520_2500"><li class="list__item" id="fd2be520_2501"><p>If the string is <span class="control" id="fd2be520_2502">empty</span>, it sets an error message in the state indicating data retrieval failure.</p></li><li class="list__item" id="fd2be520_2503"><p>If the string is <span class="control" id="fd2be520_2504">not empty</span>, it sets the success message in the state with the retrieved data.</p></li></ul></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title" data-expanded="true"><h3 id="mainscreen" data-toc="mainscreen">MainScreen</h3></div><div class="collapse__content"><div class="code-block" data-lang="kotlin">
+class MainScreen(private val repository: Repository = DataRepository()) {
+    infix fun fetches(useCase: Repository.() -&gt; String): String {
+        return repository.useCase()
+    }
+}
+</div><p id="fd2be520_2506">The <code class="code" id="fd2be520_2507">MainScreen</code> class serves as an entry point for fetching platform-specific data.</p><p id="fd2be520_2508">It delegates data retrieval tasks to a <code class="code" id="fd2be520_2509">Repository</code> implementation and provides a convenient DSL-style function <code class="code" id="fd2be520_2510">fetches</code> for invoking data retrieval use cases.</p></div></div></section><section class="chapter"><div class="collapse"><div class="collapse__title" data-expanded="true"><h3 id="mainstate" data-toc="mainstate">MainState</h3></div><div class="collapse__content"><div class="code-block" data-lang="kotlin">
+data class MainState(
+    var success: String = &quot;&quot;,
+    var error: String = &quot;&quot;
+)
+</div><p id="fd2be520_2512">The <code class="code" id="fd2be520_2513">MainState</code> data class represents the current state of the application.</p><p id="fd2be520_2514">It contains fields to hold success and error messages, providing a structured way to communicate the outcome of data retrieval operations to other components in the application.</p></div></div></section></section><div class="last-modified">Last modified: 06 March 2024</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="commonmain-as-shared.html" class="navigation-links__prev">commonMain</a><a href="desktopmain-as-shared.html" class="navigation-links__next">jvmMain</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.6.6-b205/app.js"></script></body></html>

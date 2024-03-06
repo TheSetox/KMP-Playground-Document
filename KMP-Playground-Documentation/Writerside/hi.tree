@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="hi" name="Help Instance"
+                 start-page="Introduction.md">
+
+    <toc-element topic="Introduction.md"/>
+    <toc-element topic="Goal.md"/>
+    <toc-element topic="Folder-Structure.md">
+        <toc-element topic="iosApp.md">
+            <toc-element topic="iOSApp-swift.md"/>
+            <toc-element topic="ContentView-swift.md"/>
+            <toc-element topic="Run-iOS-app.md"/>
+        </toc-element>
+        <toc-element topic="server.md">
+            <toc-element topic="Example-Implementation.md"/>
+            <toc-element topic="Running-the-server.md"/>
+        </toc-element>
+        <toc-element topic="composeApp.md">
+            <toc-element topic="androidMain.md"/>
+            <toc-element topic="iosMain.md"/>
+            <toc-element topic="commonMain.md"/>
+            <toc-element topic="desktopMain.md"/>
+            <toc-element topic="wasmJsMain.md"/>
+        </toc-element>
+        <toc-element topic="shared.md">
+            <toc-element topic="androidMain-as-shared.md"/>
+            <toc-element topic="iosMain-as-shared.md"/>
+            <toc-element topic="commonMain-as-shared.md">
+                <toc-element topic="ViewModel.md"/>
+            </toc-element>
+            <toc-element topic="desktopMain-as-shared.md"/>
+            <toc-element topic="wasmJsMain-as-shared.md"/>
+        </toc-element>
+        <toc-element topic="domain.md">
+            <toc-element topic="androidMain-as-domain.md"/>
+            <toc-element topic="iosMain-as-domain.md"/>
+            <toc-element topic="common-as-domain.md">
+                <toc-element topic="UseCase.md"/>
+                <toc-element topic="Repository.md"/>
+            </toc-element>
+            <toc-element topic="desktopMain-as-domain.md"/>
+            <toc-element topic="wasmJsMain-as-domain.md"/>
+        </toc-element>
+        <toc-element topic="data.md">
+            <toc-element topic="androidMain-as-data.md">
+                <toc-element topic="DataSource-android.md"/>
+            </toc-element>
+            <toc-element topic="iosMain-as-data.md">
+                <toc-element topic="DataSource-ios.md"/>
+            </toc-element>
+            <toc-element topic="commonMain-as-data.md">
+                <toc-element topic="Source.md"/>
+                <toc-element topic="DataRepository.md"/>
+                <toc-element topic="DataSource.md"/>
+            </toc-element>
+            <toc-element topic="desktopMain-as-data.md">
+                <toc-element topic="DataSource-jvm.md"/>
+            </toc-element>
+            <toc-element topic="wasmJsMain-as-data.md">
+                <toc-element topic="DataSource-wasmJs.md"/>
+            </toc-element>
+        </toc-element>
+    </toc-element>
+</instance-profile>
